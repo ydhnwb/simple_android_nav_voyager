@@ -1,16 +1,18 @@
-package com.ydhnwb.learnvoyager
+package com.ydhnwb.learnvoyager.page.primary
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import cafe.adriel.voyager.transitions.FadeTransition
+import com.ydhnwb.learnvoyager.page.primary.parent_explore.SettingsScreen
 
-object ExploreTab: Tab {
+object SettingsTab: Tab {
     override val options: TabOptions
         @Composable
         get() {
@@ -27,7 +29,8 @@ object ExploreTab: Tab {
 
     @Composable
     override fun Content() {
-        Navigator(Screen1()){ n ->
+        val rootNavigator = LocalNavigator.current?.parent
+        Navigator(SettingsScreen(rootNavigator)){ n ->
             FadeTransition(navigator = n)
         }
     }
